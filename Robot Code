@@ -1,0 +1,64 @@
+//package com.qualcomm.ftcrobotcontroller.opmodes;
+package org.firstinspires.ftc.teamcode;
+
+import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.OpMode;
+import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorController;
+import com.qualcomm.robotcore.hardware.Servo;
+import com.qualcomm.robotcore.hardware.ColorSensor;
+
+@Autonomous(name="Drive_Train", group="Drive_Train")  //AUTONOMOUS!
+
+public class Drive_Train extends OpMode {
+
+    OpticalDistanceSensor odsSensor;  // Hardware Device Object
+    DcMotor leftBack;
+    DcMotor leftFront;
+    DcMotor rightFront;
+    DcMotor rightBack;
+
+    ColorSensor color;
+
+
+    @Override
+    public void loop() {
+//        drivePower(10, 10, 10, 10); forward
+//        drivePower(-10, 10, -10, 10); turning left
+//        drivePower(-10, 10, 10, -10); straf left
+        telemetry.addData("Raw", odsSensor.getRawLightDetected());
+        telemetry.addData("Normal", odsSensor.getLightDetected());
+        telemetry.update();
+    }
+
+
+    @Override
+    public void init() {
+        leftBack = hardwareMap.dcMotor.get("leftBack");
+        leftFront = hardwareMap.dcMotor.get("leftFront");
+        rightFront = hardwareMap.dcMotor.get("rightFront");
+        rightBack = hardwareMap.dcMotor.get("rightBack");
+
+        color = hardwareMap.dcColorSensor.get("colorSensor");
+
+        leftFront.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        rightFront.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        leftBack.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        rightBack.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        odsSensor = hardwareMap.get(OpticalDistanceSensor.class, "sensor_ods");
+    }
+
+    public void drivePower(double power1, double power2, double power3, double power4) {
+        leftFront.setPower(power1 / 100);
+        rightFront.setPower(power2 / 100);
+        leftBack.setPower(power3 / 100);
+        rightBack.setPower(power4 / 100);
+    }
+
+    public void stopRobot() {
+        leftFront.setPower(0);
+        rightFront.setPower(0);
+        leftBack.setPower(0);
+        rightBack.setPower(0);
+    }
+}
