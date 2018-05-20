@@ -307,26 +307,25 @@ public class BlueAuto extends LinearOpMode {
         encoderDrive(0, 0, 0, 0, 0, 0.1);
     }
 
-    //movement methods
-    int fullTurnTime = 3;
+        int fullTurnTime = 3;
     public void colorBlack() {
         //read instructions
     }
     public void colorGreen() {
-        //pickup item
+        //pickup pot
         while(colorSensor.green() <5){
             rightArm.setPosition(.5); //close servo arms around pot
             leftArm.setPosition(.5);
         }
     }
     public void colorPurple() {
-        //drop item
+        //drop pot
         while(colorSensor.purple() < 5){
             rightArm.setPosition(.1);   //servo arms open
             leftArm.setPosition(.1);
         }
     }
-    public void colorBlue() {
+    public void colorBlue() { //move forward until see red
         while(colorSensor.red() < 5) { //change value
             frontLeft.setPower(100);
             frontRight.setPower(100);
@@ -338,7 +337,7 @@ public class BlueAuto extends LinearOpMode {
         backLeft.setPower(0);
         backRight.setPower(0);
     }
-    public void colorYellow() {
+    public void colorYellow() { //Move back until see blue tap
         while(colorSensor.blue() < 5) { //change value
             frontLeft.setPower(100);
             frontRight.setPower(100);
@@ -350,20 +349,26 @@ public class BlueAuto extends LinearOpMode {
         backLeft.setPower(0);
         backRight.setPower(0);
     }
-    public void colorOrange() {
+    public void colorOrange() { //turn left 90
         turnLeft(100, fullTurnTime/2);
     }
-    public void colorPink() {
+    public void colorPink() { //turn right 90
         turnRight(100, fullTurnTime/2);
     }
-    public void colorQuinoaGreen() {
+    public void colorQuinoaGreen() { //move forward until 2.5" from wall
         driveForward(100, 5); //adjust time for 2.5in"
     }
-    public void colorQuinoaYellow() {
-        //finish
-    }
-    public void colorWhite() {
+    public void colorWhite() { //turn 180
         turnLeft(100, fullTurnTime); //adjust later
+    }
+    public void colorGrey() { //strafe right
+        strafeRight(100, fullTurnTime); //adjust later
+    }
+    public void colorLightPurple() { //strafe left
+        strafeLeft(100, fullTurnTime); //adjust later
+    }
+    public void colorQuinoaYellow() { //finish reading instructions and start task
+        //finish
     }
 //    Example:
 //
