@@ -314,9 +314,17 @@ public class BlueAuto extends LinearOpMode {
     }
     public void colorGreen() {
         //pickup item
+        while(colorSensor.green() <5){
+            rightArm.setPosition(.5); //close servo arms around pot
+            leftArm.setPosition(.5);
+        }
     }
     public void colorPurple() {
         //drop item
+        while(colorSensor.purple() < 5){
+            rightArm.setPosition(.1);   //servo arms open
+            leftArm.setPosition(.1);
+        }
     }
     public void colorBlue() {
         while(colorSensor.red() < 5) { //change value
