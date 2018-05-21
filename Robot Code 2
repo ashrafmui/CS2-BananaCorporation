@@ -145,7 +145,7 @@ public class BlueAuto extends LinearOpMode {
         boolean inPos = false;
 
 //  sensorDistance.getDistance(DistanceUnit.CM)
-
+        ColorReading();
 
         driveForward(0.15, 0.5);
         while(detected == false ) {
@@ -317,17 +317,17 @@ public class BlueAuto extends LinearOpMode {
     }
     public void colorGreen() {
         //pickup pot
-        while(colorSensor.green() <5){
+      //  while(colorSensor.green() <5){
             rightArm.setPosition(.5); //close servo arms around pot
             leftArm.setPosition(.5);
-        }
+       // }
     }
     public void colorPurple() {
         //drop pot
-        while(colorSensor.red() < 5){
+       // while(colorSensor.red() < 5){
             rightArm.setPosition(.1);   //servo arms open
             leftArm.setPosition(.1);
-        }
+       // }
     }
     public void colorBlue() { //move forward until see red
         while(colorSensor.red() < 5) { //change value
@@ -380,4 +380,63 @@ public class BlueAuto extends LinearOpMode {
 //    if(colorSensor.blueValue > xNumber) {
 //        colorBlue();
 //    }
+
+
+
+  /*      public String type;
+        public String name;
+        public int age;
+        public boolean wild;
+
+        public Animal(String type, String name, int age, boolean wild) {
+            this.type = type;
+            this.name = name;
+            this.age = age;
+            this.wild = wild;
+        }
+
+        public class Main {
+            public static void main(String[] args) {
+                ColorReading[] colorReading = new Animal[3];        //3 represents the 3 variables need to take into account (age, name, tag)
+                for (int a = 0; a < 3; a++) {
+                }
+            }
+        }
+*/
+  public void ColorReading(){
+      if (colorSensor.green() <5 ){
+          colorGreen();
+        }
+      if (colorSensor.red() < 5){
+          colorPurple();
+      }
+      if (colorSensor.red() < 5) {
+          colorBlue();
+      }
+      if (colorSensor.blue() < 5) {
+          colorYellow();
+      }
+      if (colorSensor.red() < 5){
+          colorOrange();
+      }
+      if (colorSensor.red() < 5){
+          colorPink();
+      }
+      if (colorSensor.red() < 5){
+          colorQuinoaGreen();
+      }
+      if (colorSensor.red() < 5){
+          colorWhite();
+      }
+      if (colorSensor.red() < 5){
+          colorGrey();
+      }
+      if (colorSensor.red() < 5){
+          colorLightPurple();
+      }
+      if (colorSensor.red() < 5){
+          colorQuinoaYellow();
+      }
+    }
+
 }
